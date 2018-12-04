@@ -1,0 +1,580 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Feature Extraction}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{unique-dog-feature-extraction}{%
+\section{Unique dog feature
+extraction}\label{unique-dog-feature-extraction}}
+
+The outcome of this notebook will include research and analysis of data
+preperation The feature I wish to isolate from sample dog images include
+* Tails * Ears * Legs * Hair Type * Colour * Patterns
+
+\hypertarget{data-source}{%
+\section{Data Source}\label{data-source}}
+
+For the sake of this data preparation section, I shall use photo data
+sourced from \href{https://www.akc.org/dog-breeds}{American Kenel Club}
+as they provied well documented characteristics of dogs, as well as
+front,side, and isometric profile pictures of all the dogs on their
+site.
+
+\hypertarget{outcome}{%
+\section{Outcome}\label{outcome}}
+
+The outcome from these will be a binary answer, can these features be
+easily extracted from set of dog breeds to a high degree of accuracy.
+These answers will play into the App UX design. If a feature fails to
+meet the following requirements, it may be that the user will be asked
+to provide these details. Such a thing would like to be avoided, as the
+idea of the application is that the whole processes of creating a model
+of the dog is automated. * Can it be extracted ? * How easy is it to
+extract (0 - 10) * How accurate is the representaion of the feature
+compared to original feature image (0- 10) * How accuratly is the model
+when tested on various breeds
+
+\hypertarget{colour-extraction}{%
+\subsection{Colour Extraction}\label{colour-extraction}}
+
+What follows is an attempt to extract the most dominant colours from an
+image of a dog after canny edge performed on the image. A blue mask is
+applied to the image around the captured dog.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Boiler plate imports }
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{image} \PY{k}{as} \PY{n}{image}
+        \PY{k+kn}{import} \PY{n+nn}{easygui}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{cluster} \PY{k}{import} \PY{n}{KMeans}
+        \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k}{import} \PY{n}{Counter}
+        \PY{k+kn}{import} \PY{n+nn}{extcolors}
+        \PY{k+kn}{import} \PY{n+nn}{webcolors}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Loading in the imgage}
+        \PY{n}{fileLocation} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../Single Dogs/Bernese Mountain Dog Side Face.jpg}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{berneseMountainDog} \PY{o}{=} \PY{n}{image}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../Single Dogs/Bernese Mountain Dog Side.jpg}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} https://docs.opencv.org/3.1.0/da/d22/tutorial\PYZus{}py\PYZus{}canny.html}
+        \PY{n}{edges} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{Canny}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{berneseMountainDog}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{200}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}\PY{p}{,}\PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{berneseMountainDog}\PY{p}{,}\PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}\PY{p}{,}\PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{edges}\PY{p}{,}\PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Edge Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{}== Parameters =======================================================================}
+        \PY{n}{BLUR} \PY{o}{=} \PY{l+m+mi}{21}
+        \PY{n}{CANNY\PYZus{}THRESH\PYZus{}1} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{CANNY\PYZus{}THRESH\PYZus{}2} \PY{o}{=} \PY{l+m+mi}{200}
+        \PY{n}{MASK\PYZus{}DILATE\PYZus{}ITER} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{MASK\PYZus{}ERODE\PYZus{}ITER} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{MASK\PYZus{}COLOR} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)} \PY{c+c1}{\PYZsh{} In BGR format}
+        
+        
+        \PY{c+c1}{\PYZsh{}== Processing =======================================================================}
+        
+        \PY{c+c1}{\PYZsh{}\PYZhy{}\PYZhy{} Read image \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{n}{img} \PY{o}{=} \PY{n}{berneseMountainDog}
+        \PY{n}{gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{img}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZhy{}\PYZhy{} Edge detection \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{n}{edges} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{Canny}\PY{p}{(}\PY{n}{gray}\PY{p}{,} \PY{n}{CANNY\PYZus{}THRESH\PYZus{}1}\PY{p}{,} \PY{n}{CANNY\PYZus{}THRESH\PYZus{}2}\PY{p}{)}
+        \PY{n}{edges} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{dilate}\PY{p}{(}\PY{n}{edges}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{edges} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{erode}\PY{p}{(}\PY{n}{edges}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZhy{}\PYZhy{} Find contours in edges, sort by area \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{n}{contour\PYZus{}info} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{contours}\PY{p}{,} \PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{findContours}\PY{p}{(}\PY{n}{edges}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{RETR\PYZus{}LIST}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{CHAIN\PYZus{}APPROX\PYZus{}NONE}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{contours}\PY{p}{:}
+            \PY{n}{contour\PYZus{}info}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}
+                \PY{n}{c}\PY{p}{,}
+                \PY{n}{cv2}\PY{o}{.}\PY{n}{isContourConvex}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{,}
+                \PY{n}{cv2}\PY{o}{.}\PY{n}{contourArea}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{,}
+            \PY{p}{)}\PY{p}{)}
+        \PY{n}{contour\PYZus{}info} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{contour\PYZus{}info}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{c}\PY{p}{:} \PY{n}{c}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{max\PYZus{}contour} \PY{o}{=} \PY{n}{contour\PYZus{}info}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{}\PYZhy{}\PYZhy{} Create empty mask, draw filled polygon on it corresponding to largest contour \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{c+c1}{\PYZsh{} Mask is black, polygon is white}
+        \PY{n}{mask} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{edges}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n}{cv2}\PY{o}{.}\PY{n}{fillConvexPoly}\PY{p}{(}\PY{n}{mask}\PY{p}{,} \PY{n}{max\PYZus{}contour}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{255}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZhy{}\PYZhy{} Smooth mask, then blur it \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{n}{mask} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{dilate}\PY{p}{(}\PY{n}{mask}\PY{p}{,} \PY{k+kc}{None}\PY{p}{,} \PY{n}{iterations}\PY{o}{=}\PY{n}{MASK\PYZus{}DILATE\PYZus{}ITER}\PY{p}{)}
+        \PY{n}{mask} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{erode}\PY{p}{(}\PY{n}{mask}\PY{p}{,} \PY{k+kc}{None}\PY{p}{,} \PY{n}{iterations}\PY{o}{=}\PY{n}{MASK\PYZus{}ERODE\PYZus{}ITER}\PY{p}{)}
+        \PY{n}{mask} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{GaussianBlur}\PY{p}{(}\PY{n}{mask}\PY{p}{,} \PY{p}{(}\PY{n}{BLUR}\PY{p}{,} \PY{n}{BLUR}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{mask\PYZus{}stack} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dstack}\PY{p}{(}\PY{p}{[}\PY{n}{mask}\PY{p}{]}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}    \PY{c+c1}{\PYZsh{} Create 3\PYZhy{}channel alpha mask}
+        
+        \PY{c+c1}{\PYZsh{}\PYZhy{}\PYZhy{} Blend masked img into MASK\PYZus{}COLOR background \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{n}{mask\PYZus{}stack}  \PY{o}{=} \PY{n}{mask\PYZus{}stack}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{/} \PY{l+m+mf}{255.0}          \PY{c+c1}{\PYZsh{} Use float matrices, }
+        \PY{n}{img}         \PY{o}{=} \PY{n}{img}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{/} \PY{l+m+mf}{255.0}                 \PY{c+c1}{\PYZsh{}  for easy blending}
+        
+        \PY{n}{masked} \PY{o}{=} \PY{p}{(}\PY{n}{mask\PYZus{}stack} \PY{o}{*} \PY{n}{img}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{mask\PYZus{}stack}\PY{p}{)} \PY{o}{*} \PY{n}{MASK\PYZus{}COLOR}\PY{p}{)} \PY{c+c1}{\PYZsh{} Blend}
+        \PY{n}{masked} \PY{o}{=} \PY{p}{(}\PY{n}{masked} \PY{o}{*} \PY{l+m+mi}{255}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}                     \PY{c+c1}{\PYZsh{} Convert back to 8\PYZhy{}bit }
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{masked}\PY{p}{)}                                   \PY{c+c1}{\PYZsh{} Display}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imsave}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{masked.jpg}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{masked}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{def} \PY{n+nf}{get\PYZus{}dominant\PYZus{}color}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{k}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{,} \PY{n}{image\PYZus{}processing\PYZus{}size} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{    takes an image as input}
+        \PY{l+s+sd}{    returns the dominant color of the image as a list}
+        \PY{l+s+sd}{    }
+        \PY{l+s+sd}{    dominant color is found by running k means on the }
+        \PY{l+s+sd}{    pixels \PYZam{} returning the centroid of the largest cluster}
+        
+        \PY{l+s+sd}{    processing time is sped up by working with a smaller image; }
+        \PY{l+s+sd}{    this resizing can be done with the image\PYZus{}processing\PYZus{}size param }
+        \PY{l+s+sd}{    which takes a tuple of image dims as input}
+        
+        \PY{l+s+sd}{    \PYZgt{}\PYZgt{}\PYZgt{} get\PYZus{}dominant\PYZus{}color(my\PYZus{}image, k=4, image\PYZus{}processing\PYZus{}size = (25, 25))}
+        \PY{l+s+sd}{    [56.2423442, 34.0834233, 70.1234123]}
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{c+c1}{\PYZsh{}resize image if new dims provided}
+            \PY{k}{if} \PY{n}{image\PYZus{}processing\PYZus{}size} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+                \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{image\PYZus{}processing\PYZus{}size}\PY{p}{,} 
+                                    \PY{n}{interpolation} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{INTER\PYZus{}AREA}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{}reshape the image to be a list of pixels}
+            \PY{n}{image} \PY{o}{=} \PY{n}{image}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{n}{image}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{image}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{}cluster and assign labels to the pixels }
+            \PY{n}{clt} \PY{o}{=} \PY{n}{KMeans}\PY{p}{(}\PY{n}{n\PYZus{}clusters} \PY{o}{=} \PY{n}{k}\PY{p}{)}
+            \PY{n}{labels} \PY{o}{=} \PY{n}{clt}\PY{o}{.}\PY{n}{fit\PYZus{}predict}\PY{p}{(}\PY{n}{image}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{}count labels to find most popular}
+            \PY{n}{label\PYZus{}counts} \PY{o}{=} \PY{n}{Counter}\PY{p}{(}\PY{n}{labels}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{}subset out most popular centroid}
+            \PY{n}{dominant\PYZus{}color} \PY{o}{=} \PY{n}{clt}\PY{o}{.}\PY{n}{cluster\PYZus{}centers\PYZus{}}\PY{p}{[}\PY{n}{label\PYZus{}counts}\PY{o}{.}\PY{n}{most\PYZus{}common}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+        
+            \PY{k}{return} \PY{n+nb}{list}\PY{p}{(}\PY{n}{dominant\PYZus{}color}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{get\PYZus{}dominant\PYZus{}color}\PY{p}{(}\PY{n}{berneseMountainDog}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} [253.88794769316945, 253.50698648852716, 253.29943011447943]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{colors}\PY{p}{,} \PY{n}{pixel\PYZus{}count} \PY{o}{=} \PY{n}{extcolors}\PY{o}{.}\PY{n}{extract}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{masked.jpg}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{colors}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} [((0, 0, 254), 235595),
+         ((21, 20, 19), 56283),
+         ((255, 255, 255), 29861),
+         ((168, 100, 55), 18116),
+         ((96, 89, 96), 4608),
+         ((83, 84, 254), 3805),
+         ((170, 171, 254), 3416),
+         ((87, 83, 193), 1270),
+         ((182, 164, 152), 808),
+         ((53, 45, 104), 519),
+         ((79, 31, 10), 7),
+         ((248, 189, 131), 5),
+         ((192, 110, 124), 1)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{def} \PY{n+nf}{closest\PYZus{}colour}\PY{p}{(}\PY{n}{requested\PYZus{}colour}\PY{p}{)}\PY{p}{:}
+             \PY{n}{min\PYZus{}colours} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{name} \PY{o+ow}{in} \PY{n}{webcolors}\PY{o}{.}\PY{n}{css3\PYZus{}hex\PYZus{}to\PYZus{}names}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{r\PYZus{}c}\PY{p}{,} \PY{n}{g\PYZus{}c}\PY{p}{,} \PY{n}{b\PYZus{}c} \PY{o}{=} \PY{n}{webcolors}\PY{o}{.}\PY{n}{hex\PYZus{}to\PYZus{}rgb}\PY{p}{(}\PY{n}{key}\PY{p}{)}
+                 \PY{n}{rd} \PY{o}{=} \PY{p}{(}\PY{n}{r\PYZus{}c} \PY{o}{\PYZhy{}} \PY{n}{requested\PYZus{}colour}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+                 \PY{n}{gd} \PY{o}{=} \PY{p}{(}\PY{n}{g\PYZus{}c} \PY{o}{\PYZhy{}} \PY{n}{requested\PYZus{}colour}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+                 \PY{n}{bd} \PY{o}{=} \PY{p}{(}\PY{n}{b\PYZus{}c} \PY{o}{\PYZhy{}} \PY{n}{requested\PYZus{}colour}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+                 \PY{n}{min\PYZus{}colours}\PY{p}{[}\PY{p}{(}\PY{n}{rd} \PY{o}{+} \PY{n}{gd} \PY{o}{+} \PY{n}{bd}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{name}
+             \PY{k}{return} \PY{n}{min\PYZus{}colours}\PY{p}{[}\PY{n+nb}{min}\PY{p}{(}\PY{n}{min\PYZus{}colours}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}colour\PYZus{}name}\PY{p}{(}\PY{n}{requested\PYZus{}colour}\PY{p}{)}\PY{p}{:}
+             \PY{k}{try}\PY{p}{:}
+                 \PY{n}{closest\PYZus{}name} \PY{o}{=} \PY{n}{actual\PYZus{}name} \PY{o}{=} \PY{n}{webcolors}\PY{o}{.}\PY{n}{rgb\PYZus{}to\PYZus{}name}\PY{p}{(}\PY{n}{requested\PYZus{}colour}\PY{p}{)}
+             \PY{k}{except} \PY{n+ne}{ValueError}\PY{p}{:}
+                 \PY{n}{closest\PYZus{}name} \PY{o}{=} \PY{n}{closest\PYZus{}colour}\PY{p}{(}\PY{n}{requested\PYZus{}colour}\PY{p}{)}
+                 \PY{n}{actual\PYZus{}name} \PY{o}{=} \PY{k+kc}{None}
+             \PY{k}{return} \PY{n}{closest\PYZus{}name}
+         
+         \PY{n}{requested\PYZus{}colour} \PY{o}{=} \PY{n}{colors}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{closest\PYZus{}name} \PY{o}{=} \PY{n}{get\PYZus{}colour\PYZus{}name}\PY{p}{(}\PY{n}{requested\PYZus{}colour}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Actual colour name: closest colour name:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{closest\PYZus{}name}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Actual colour name: closest colour name: royalblue
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{sizeOfColours} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{colors}\PY{p}{)}
+         \PY{n}{squareIterations} \PY{o}{=} \PY{l+m+mi}{64}
+         
+         \PY{n}{topX} \PY{o}{=} \PY{n}{topY} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{bottomX} \PY{o}{=} \PY{n}{bottomY} \PY{o}{=} \PY{n}{squareIterations}
+         \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+         
+         \PY{n}{hexColours} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{actual\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{closest\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             
+         \PY{c+c1}{\PYZsh{} Create a black image}
+         \PY{n}{img} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{512}\PY{p}{,}\PY{l+m+mi}{512}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{uint8}\PY{p}{)}
+         \PY{n}{img}\PY{o}{.}\PY{n}{fill}\PY{p}{(}\PY{l+m+mi}{255}\PY{p}{)}
+          
+         \PY{c+c1}{\PYZsh{} Draw a diagonal blue line with thickness of 5 px}
+         \PY{c+c1}{\PYZsh{} image, top\PYZhy{}left position, bottom\PYZhy{}right position, colour, fill amount}
+         \PY{k}{for} \PY{n}{colour} \PY{o+ow}{in} \PY{n}{colors}\PY{p}{:}
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{rectangle}\PY{p}{(}\PY{n}{img}\PY{p}{,}\PY{p}{(}\PY{n}{topX}\PY{p}{,}\PY{n}{topY}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{n}{bottomX}\PY{p}{,}\PY{n}{bottomY}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{n}{colour}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+             \PY{n}{hexColours}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}}\PY{l+s+si}{\PYZpc{}02x}\PY{l+s+si}{\PYZpc{}02x}\PY{l+s+si}{\PYZpc{}02x}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{colour}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{n}{closest\PYZus{}names}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{closest\PYZus{}name}\PY{p}{)}
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{putText}\PY{p}{(}\PY{n}{img}\PY{p}{,}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}}\PY{l+s+si}{\PYZpc{}02x}\PY{l+s+si}{\PYZpc{}02x}\PY{l+s+si}{\PYZpc{}02x}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{colour}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{84}\PY{p}{,}\PY{n}{bottomY}\PY{p}{)}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{FONT\PYZus{}HERSHEY\PYZus{}SIMPLEX}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{putText}\PY{p}{(}\PY{n}{img}\PY{p}{,}\PY{p}{(}\PY{n}{get\PYZus{}colour\PYZus{}name}\PY{p}{(}\PY{n}{colour}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{232}\PY{p}{,}\PY{n}{bottomY}\PY{p}{)}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{FONT\PYZus{}HERSHEY\PYZus{}SIMPLEX}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{putText}\PY{p}{(}\PY{n}{img}\PY{p}{,}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{p}{(}\PY{n}{colour}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{/} \PY{n}{pixel\PYZus{}count}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{432}\PY{p}{,}\PY{n}{bottomY}\PY{p}{)}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{FONT\PYZus{}HERSHEY\PYZus{}SIMPLEX}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{topY} \PY{o}{+}\PY{o}{=} \PY{n}{squareIterations}
+             \PY{n}{bottomY} \PY{o}{+}\PY{o}{=} \PY{n}{squareIterations}
+             
+                     
+         
+         \PY{c+c1}{\PYZsh{}cv2.rectangle(img,(0,64),(64,64+64),(colors[3][0]),\PYZhy{}1)}
+         \PY{c+c1}{\PYZsh{}cv2.putText(img,(round((colour[1] / pixel\PYZus{}count) * 100,1)), (232,bottomY), cv2.FONT\PYZus{}HERSHEY\PYZus{}SIMPLEX, 1,(0,0,0),2)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} <matplotlib.image.AxesImage at 0x1f0c9ccbb38>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} 
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

@@ -27,3 +27,10 @@ matplotlib
 Jupyter Notebook Enviroment
 
 The Prototype xml file was created with Draw.io. Other Prototyping tools may open the file, not tested though.
+
+
+
+# Project Fair
+I shall be attending TU Dublin project fair, held in Gleeson Hall 9th of April, booth 17.
+
+You can view my poster from the event [here](https://github.com/Ciaran-OBrien/FYP/blob/master/Documents/Ciaran%20OBrien%20Poster.pdf)

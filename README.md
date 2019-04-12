@@ -2,7 +2,7 @@
 
 Included are all relavent files to my final submisison
 
-There are two three folders
+There are four folders
 
 - Colour Extraction
 - Breed Classification

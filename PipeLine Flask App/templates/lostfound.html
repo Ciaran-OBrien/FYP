@@ -1,0 +1,96 @@
+<!-- inherite the layout parent-->
+{% extends 'layout.html' %}
+
+<!-- Content -->
+{%block content%}
+<!DOCTYPE html>
+<div class="container">
+  <div class="header">
+    <h1>Lost</h1>
+  </div>
+  <div id="carouselIndicatorsLost" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      {% for dog in lost %}
+      {% if loop.index == 1%}
+      <li data-target="#carouselIndicatorsLost" data-slide-to="0" class="active"></li>
+      {% else %}
+      <li data-target="#carouselIndicatorsLost" data-slide-to="{{loop.index}}"></li>
+      {% endif %}
+      {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      {% for dog in lost %}
+      {% if loop.index == 1%}
+      <div class="item active">
+        {% else %}
+        <div class="item">
+          {% endif %}
+          <img class="img-responsive center-block" src={{dog.fileLocation}} alt="">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>{{dog.name}}</h3>
+            <p>Breed: {{dog.breed}}</br>Colours: {{dog.colours}}</br>Size: {{dog.size.value}}</p>
+            <p>Last seen: {{dog.location}}</p>
+            <a class="btn btn-primary">I can help!</a>
+          </div>
+        </div>
+        {%endfor%}
+
+      </div>
+      <a class="left carousel-control" href="#carouselIndicatorsLost" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carouselIndicatorsLost" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="header">
+    <h1>Found</h1>
+  </div>
+  <div id="carouselIndicatorsFound" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      {% for dog in found %}
+      {% if loop.index == 1%}
+      <li data-target="#carouselIndicatorsFound" data-slide-to="0" class="active"></li>
+      {% else %}
+      <li data-target="#carouselIndicatorsFound" data-slide-to="{{loop.index}}"></li>
+      {% endif %}
+      {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      {% for dog in found %}
+      {% if loop.index == 1%}
+      <div class="item active">
+        {% else %}
+        <div class="item">
+          {% endif %}
+            <img class="img-responsive center-block" src={{dog.fileLocation}} alt="">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>{{dog.name}}</h3>
+            <p>Breed: {{dog.breed}}</br>Colours: {{dog.colours}}</br>Size: {{dog.size}}</p>
+            <p>Last seen: {{dog.location}}</p>
+            <a class="btn btn-primary">That's my dog!</a>
+          </div>
+        </div>
+        {%endfor%}
+
+      </div>
+      <a class="left carousel-control" href="#carouselIndicatorsFound" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carouselIndicatorsFound" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</div>
+{%endblock%}

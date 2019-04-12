@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  {{ super() }}
+{% endblock%}
+
+<!-- Content -->
+{% block content %}
+	<div class="container">
+
+    </br>
+I'm {{prediction}}% sure that's a dog in the image.
+</br>
+<h1>Top Three Predictions</h1>
+{% for pred in classes%}
+{{pred}} </br>
+{% endfor %}
+	</div>
+{% endblock %}

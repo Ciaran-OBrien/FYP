@@ -1,0 +1,22 @@
+{% extends 'bootstrap/base.html' %}
+
+<!-- Navigation Bar -->
+{% block navbar %}
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+        <a class="navbar-brand" href="{{ url_for('upload') }}">Scan Dog</a>
+        <a class="navbar-brand" href="{{ url_for('lostfound') }}">Lost and Found</a>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+<!-- Content Block -->
+{% block page_title %} {{ title}} {% endblock %}
+
+
+{% block footer %}
+&copy; Copyright 2019 by <a href="http://domain.invalid/">Ciarán O'Brien</a>.
+{% endblock %}

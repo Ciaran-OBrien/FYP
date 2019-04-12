@@ -1,6 +1,6 @@
-# Final Year Project Interim Submission
+# Final Year Project - Submission
 
-Included are all relavent files to my submisison of my interim report.
+Included are all relavent files to my final submisison
 
 There are two three folders
 

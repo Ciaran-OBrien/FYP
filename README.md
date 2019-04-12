@@ -7,6 +7,10 @@ There are two three folders
 - Colour Extraction
 - Breed Classification
 - Prototype
+- Flask Pipeline App
+
+## Final Submission Information
+All code submitted for final assesment is included here. The main aspects of this repository are concerned with the folder *Flask PipeLine App* [here](https://github.com/Ciaran-OBrien/FYP/tree/master/PipeLine%20Flask%20App)
 
 ## Colour Extraction 
 
@@ -31,6 +35,6 @@ The Prototype xml file was created with Draw.io. Other Prototyping tools may ope
 
 
 # Project Fair
-I shall be attending TU Dublin project fair, held in Gleeson Hall 9th of April, booth 17.
+I also attended the  TU Dublin project fair, held in Gleeson Hall 9th of April, booth 17.
 
 You can view my poster from the event [here](https://github.com/Ciaran-OBrien/FYP/blob/master/Documents/Ciaran%20OBrien%20Poster.pdf)

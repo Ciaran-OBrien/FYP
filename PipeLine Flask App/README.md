@@ -1,6 +1,13 @@
-# Project Title
+# FindMyDogg
+## Exploring Machine Learing Techniques to Identify Dogs.
 
-FindMyDoggo - Exploring Machine Learing Techniques to Identify Dogs.
+We see lost pets everywhere, and its heart breaking, ever more so to the owners of these pets. Be it through neglect, or a stray pet, it can be difficult to retrieve them.
+
+With dogs, we're advised to not approach them, rather, call a vet, and they'll process the dog. However, all this is timely, costly and often ineffective method of identifying the lost dog when there's no microchip present. 
+
+This project proposes building a time saving, cost effective, and safer method, for the public to use. The project explores machine learning and image processing techniques to detect, classify and obtain abstract features about a dog. There is room for future research looking towards identifying the dog itself. 
+
+Digital Ocean hosts the application and built using Python, and web application framework Flask. Tensorflow functions as the back-end for the majority of machine learning aspects.  The project also makes use of the Keras API to incorporate powerful Neural Networks.
 
 
 ### Prerequisites

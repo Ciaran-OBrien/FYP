@@ -41,6 +41,16 @@ flask run
 
 * Point your web browser to the promted webserver address: [127.0.0.1:5000](127.0.0.1:5000)
 
+## Sample Usage Steps
+
+* Open the loading page, either through your local host machine or through the website.
+* Move to the Scan Dog Page
+* Drag & Drop an image, or click & load form file explorer
+* Fill in the form details
+* Click Register Dog and wait for results
+* Head over to Lost and Found page, and you'll see your uploaded dog
+
+*Note: Web-App is a proof-of-concept. Any function & information shown on the Lost and Found page is purely developmental*
 
 ## Built With
 
